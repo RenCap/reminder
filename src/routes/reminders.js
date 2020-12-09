@@ -5,41 +5,35 @@ const httpStatus = require('http-status-codes');
 
 const reminderService = require('../services/reminderService');
 
+const requestHandler = async (req, res, process, isPost = false) => {
+    const result = await process();
+    if (isPost) {
+        res.status(httpStatus.CREATED)
+            .header('Location', req.baseUrl + '/' + result._id)
+    } else {
+        res.status(httpStatus.OK)
+    }
+    res.json(result);
+}
+
 router.get('/', (req, res, next) => {
-    (async () => {
-        const reminders = await reminderService.findAll();
-        res.status(httpStatus.OK).json(reminders);
-    })();
+    requestHandler(req, res, () => reminderService.find());
 });
 
 router.get('/:reminderId', (req, res, next) => {
-    (async () => {
-        const reminder = await reminderService.findOne(req.params.reminderId);
-        res.status(httpStatus.OK).json(reminder);
-    })();
+    requestHandler(req, res, () => reminderService.findOne(req.params.reminderId));
 });
 
 router.post('/', (req, res, next) => {
-    (async () => {
-        const doc = await reminderService.create(req.body)
-        res.status(httpStatus.CREATED)
-            .header('Location', req.baseUrl + '/' + doc._id)
-            .json(doc);
-    })();
+    requestHandler(req, res, () => reminderService.create(req.body), true);
 });
 
 router.put('/:reminderId', (req, res, next) => {
-    (async () => {
-        const reminder = await reminderService.update(req.params.reminderId, req.body);
-        res.status(httpStatus.OK).json(reminder);
-    })();
+    requestHandler(req, res, () => reminderService.update(req.params.reminderId, req.body));
 });
 
 router.delete('/:reminderId', (req, res, next) => {
-    (async () => {
-        await reminderService.delete(req.params.reminderId);
-        res.status(httpStatus.OK).send();
-    })();
+    requestHandler(req, res, () => reminderService.delete(req.params.reminderId));
 });
 
 module.exports = router;
