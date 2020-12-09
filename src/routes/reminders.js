@@ -1,20 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const httpStatus = require('http-status-codes');
-
+const requestHandler = require('./utils/requestHandler');
 const reminderService = require('../services/reminderService');
-
-const requestHandler = async (req, res, process, isPost = false) => {
-    const result = await process();
-    if (isPost) {
-        res.status(httpStatus.CREATED)
-            .header('Location', req.baseUrl + '/' + result._id)
-    } else {
-        res.status(httpStatus.OK)
-    }
-    res.json(result);
-}
 
 router.get('/', (req, res, next) => {
     requestHandler(req, res, () => reminderService.find());

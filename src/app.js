@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
+const httpStatus = require('http-status-codes');
 
 const router = require('./routes');
 
@@ -27,5 +28,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
+
+app.use((req, res, next) => {
+    res.status(httpStatus.NOT_FOUND).json({error: 'Not found'})
+});
 
 module.exports = app;
