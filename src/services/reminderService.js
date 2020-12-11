@@ -1,25 +1,24 @@
 const NotFoundError = require('../routes/errors/NotFoundError');
 
 const reminderDao = require('../daos/reminderDao');
+const taskService = require('./taskService');
 
-exports.create = async value => await reminderDao.save(value);
 exports.find = async () => await reminderDao.find();
-exports.findOne = async id => {
-    const reminder = await reminderDao.findOne(id);
+exports.findById = async id => {
+    const reminder = await reminderDao.findById(id);
     if (!reminder) {
-        throw new NotFoundError(`Reminder with id ${id} not found`)
+        throw new NotFoundError(`Reminder with id ${id} not found`);
     }
     return reminder;
 };
-exports.update = async (id, value) => {
-    await reminderDao.update(id, value);
-    return reminderDao.findOne(id);
-}
-exports.delete = async id => {
-    const reminder = await this.findOne(id);
-    if (!reminder) {
-        throw new NotFoundError(`Reminder with id ${id} not found`)
-    }
-    await reminderDao.delete(id);
+exports.create = async reminder => await reminderDao.create(reminder);
+exports.update = async (id, reminder) => {
+    await reminderDao.update(id, reminder);
+    return reminderDao.findById(id);
+};
+exports.deleteById = async id => {
+    const reminder = await this.findById(id);
+    await taskService.deleteByReminder(id);
+    await reminderDao.deleteById(id);
     return reminder;
 };

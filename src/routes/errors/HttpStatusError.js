@@ -8,6 +8,6 @@ const HttpStatusError = class HttpStatusError extends Error {
         }
         this.httpStatus = httpStatus;
     }
-}
+};
 
 module.exports = HttpStatusError;

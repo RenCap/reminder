@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api', router);
 
 app.use((req, res, next) => {
-    res.status(httpStatus.NOT_FOUND).json({error: 'Not found'})
+    res.status(httpStatus.NOT_FOUND).json({error: 'Not found'});
 });
 
 module.exports = app;

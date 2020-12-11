@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/:reminderId', (req, res, next) => {
-    requestHandler(req, res, () => reminderService.findOne(req.params.reminderId));
+    requestHandler(req, res, () => reminderService.findById(req.params.reminderId));
 });
 
 router.post('/', (req, res, next) => {
@@ -21,7 +21,7 @@ router.put('/:reminderId', (req, res, next) => {
 });
 
 router.delete('/:reminderId', (req, res, next) => {
-    requestHandler(req, res, () => reminderService.delete(req.params.reminderId));
+    requestHandler(req, res, () => reminderService.deleteById(req.params.reminderId));
 });
 
 module.exports = router;

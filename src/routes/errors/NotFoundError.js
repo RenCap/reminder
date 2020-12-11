@@ -6,6 +6,6 @@ const NotFoundError = class NotFoundError extends HttpStatusError {
         super(message);
         this.httpStatut = httpStatus.NOT_FOUND;
     }
-}
+};
 
 module.exports = NotFoundError;

@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 
 const Reminder = new mongoose.Schema({
-    title: String
+    name: {
+        type: String,
+        required: true
+    }
 });
 
 module.exports = mongoose.model('Reminder', Reminder);
