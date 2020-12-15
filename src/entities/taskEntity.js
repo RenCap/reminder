@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import {Schema, model} from "mongoose";
 
-const Reminder = require('./reminderEntity');
+import Reminder from "./reminderEntity";
 
-const Task = new mongoose.Schema({
+const Task = new Schema({
     name: {
         type: String,
         required: true
@@ -16,4 +15,4 @@ const Task = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Task', Task);
+export default model('Task', Task);

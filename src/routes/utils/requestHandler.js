@@ -1,6 +1,6 @@
-const httpStatus = require('http-status-codes');
+import httpStatus from "http-status-codes";
 
-const HttpStatusError = require("../errors/HttpStatusError");
+import HttpStatusError from "../errors/HttpStatusError";
 
 const requestHandler = async (req, res, process, isPost = false) => {
     try {
@@ -34,4 +34,4 @@ const requestHandler = async (req, res, process, isPost = false) => {
     }
 };
 
-module.exports = requestHandler;
+export default requestHandler

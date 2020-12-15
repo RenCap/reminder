@@ -1,11 +1,10 @@
-const httpStatus = require('http-status-codes');
-const HttpStatusError = require("./HttpStatusError");
+import httpStatus from "http-status-codes";
 
-const NotFoundError = class NotFoundError extends HttpStatusError {
+import HttpStatusError from "./HttpStatusError";
+
+export default class NotFoundError extends HttpStatusError {
     constructor(message) {
         super(message);
         this.httpStatut = httpStatus.NOT_FOUND;
     }
 };
-
-module.exports = NotFoundError;

@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+import {Schema, model} from "mongoose";
 
-const Reminder = new mongoose.Schema({
+const Reminder = new Schema({
     name: {
         type: String,
         required: true
     }
 });
 
-module.exports = mongoose.model('Reminder', Reminder);
+export default model('Reminder', Reminder);

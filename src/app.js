@@ -1,11 +1,11 @@
-const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
-const mongoose = require('mongoose');
-const httpStatus = require('http-status-codes');
-
-const router = require('./routes');
+import express from "express";
+import path from "path";
+import cookieParser from "cookie-parser";
+// const cookieParser = require('cookie-parser');
+import logger from "morgan";
+import {connect} from "mongoose";
+import httpStatus from "http-status-codes";
+import router from "./routes";
 
 const app = express();
 
@@ -13,7 +13,7 @@ const app = express();
 (async () => {
     // TODO parametrize the mongo URI
     const uri = 'mongodb://localhost:27017/reminder';
-    await mongoose.connect(uri, {
+    await connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -29,8 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', router);
 
-app.use((req, res, next) => {
+app.use((req, res) => {
     res.status(httpStatus.NOT_FOUND).json({error: 'Not found'});
 });
 
-module.exports = app;
+export default app;

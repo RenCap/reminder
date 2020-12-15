@@ -1,7 +1,11 @@
-const Reminder = require('../entities/reminderEntity');
+import Reminder from "../entities/reminderEntity";
 
-exports.find = async query => Reminder.find(query);
-exports.findById = async id => Reminder.findById(id);
-exports.create = async reminder => Reminder.create(reminder);
-exports.update = async (id, reminder) => Reminder.findByIdAndUpdate(id, reminder);
-exports.deleteById = async id => Reminder.findByIdAndDelete(id);
+export const find = async (query) => Reminder.find(query);
+
+export const findById = async id => Reminder.findById(id);
+
+export const create = async reminder => Reminder.create(reminder);
+
+export const update = async (id, reminder) => Reminder.findByIdAndUpdate(id, reminder);
+
+export const deleteById = async id => Reminder.findByIdAndDelete(id);

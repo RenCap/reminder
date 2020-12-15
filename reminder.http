@@ -1,0 +1,63 @@
+######################################################################
+# Reminders
+######################################################################
+
+### Get reminders
+GET http://localhost:3000/api/reminders
+
+### Get reminder
+GET http://localhost:3000/api/reminders/5fd9054892e10637aea7861b
+
+### Create reminder
+POST http://localhost:3000/api/reminders
+Content-Type: application/json
+
+{
+    "name": "TODO"
+}
+
+### Update reminder
+PUT http://localhost:3000/api/reminders/5fd9054892e10637aea7861b
+Content-Type: application/json
+
+{
+    "name": "TODO"
+}
+
+### Delete reminder
+DELETE http://localhost:3000/api/reminders/5fd9054892e10637aea7861b
+
+######################################################################
+# Tasks
+######################################################################
+
+### Get tasks
+GET http://localhost:3000/api/tasks
+
+### Get task
+GET http://localhost:3000/api/tasks/5fd9056092e10637aea7861c
+
+### Get tasks by reminder
+GET http://localhost:3000/api/reminders/5fd9054892e10637aea7861b/tasks
+
+### Create task
+POST http://localhost:3000/api/reminders/5fd9054892e10637aea7861b/tasks
+Content-Type: application/json
+
+{
+    "name": "TODO",
+    "description": "TODO stuff"
+}
+
+### Update task
+PUT http://localhost:3000/api/reminders/5fd9054892e10637aea7861b/tasks/5fd9056092e10637aea7861c
+Content-Type: application/json
+
+{
+    "name": "TODO",
+    "description": "TODO stuff"
+}
+
+### Delete task
+DELETE http://localhost:3000/api/tasks/5fd9056092e10637aea7861c
+

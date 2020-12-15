@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --trace-warnings ./bin/www",
-    "start:dev": "nodemon ./bin/www"
+    "build": "babel src -d dist",
+    "start": "npm run build && node dist/bin/www.js",
+    "serve": "npm run build && nodemon dist/bin/www.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,5 +16,11 @@
     "mongoose": "^5.11.2",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.10"
   }
 }

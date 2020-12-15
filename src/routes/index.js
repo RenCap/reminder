@@ -1,10 +1,11 @@
-const express = require('express');
-const router = express.Router();
+import express from "express";
 
-const reminderRouter = require('./reminders');
-const taskRouter = require('./tasks');
+import reminderRouter from "./reminders";
+import taskRouter from "./tasks";
+
+const router = express.Router();
 
 router.use('/', taskRouter);
 router.use('/reminders', reminderRouter);
 
-module.exports = router;
+export default router;
