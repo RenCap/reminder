@@ -1,5 +1,13 @@
 version: "3.8"
 services:
+  reminder:
+    image: reminder
+    build:
+      context: ./
+    ports:
+    - 3000:3000
+    environment:
+      MONGO_HOST: mongo
   mongo:
     image: mongo:4.4
     ports:

@@ -11,8 +11,7 @@ const app = express();
 
 // Connect to MongoDB
 (async () => {
-    // TODO parametrize the mongo URI
-    const uri = 'mongodb://localhost:27017/reminder';
+    const uri = `mongodb://${process.env.MONGO_HOST || 'localhost'}:${process.env.MONGO_PORT || '27017'}/reminder`;
     await connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
