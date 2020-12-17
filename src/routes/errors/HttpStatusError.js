@@ -6,5 +6,8 @@ export default class HttpStatusError extends Error {
             throw new TypeError('Abstract class "HttpStatusError" cannot be instantiated directly');
         }
         this.httpStatus = httpStatus;
+
+        this.name = 'HttpStatusError';
+        this.type = this.constructor.name;
     }
 };

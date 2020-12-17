@@ -1,7 +1,5 @@
 import httpStatus from "http-status-codes";
 
-import HttpStatusError from "../errors/HttpStatusError";
-
 const requestHandler = async (req, res, process, isPost = false) => {
     try {
         // Get the result
@@ -20,18 +18,15 @@ const requestHandler = async (req, res, process, isPost = false) => {
 
     } catch (err) {
         console.error(err);
+        const errorHandlers = {
+            'HttpStatusError': (res, err) => res.status(err.httpStatut).json({error: `${err.type}: ${err.message}`}),
+            'ValidationError': (res, err) => res.status(httpStatus.BAD_REQUEST).json({error: err.toString()})
+        };
+        const defaultExceptionHandler = (res) => res.status(httpStatus.INTERNAL_SERVER_ERROR).json({error: 'An error occurred.'});
 
-        if (err instanceof HttpStatusError) {
-            // Manage known errors
-            res.status(err.httpStatut).json({error: err.message});
-        } else if (err.name === 'ValidationError') {
-            // Manage validation errors
-            res.status(httpStatus.BAD_REQUEST).json({error: err.toString()});
-        } else {
-            // Default error
-            res.status(httpStatus.INTERNAL_SERVER_ERROR).json({error: 'An error occured.'});
-        }
+        let errorHandler = errorHandlers[err.name] || defaultExceptionHandler;
+        errorHandler(res, err);
     }
 };
 
-export default requestHandler
+export default requestHandler;
