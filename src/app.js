@@ -1,7 +1,6 @@
 import express from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
-// const cookieParser = require('cookie-parser');
 import logger from "morgan";
 import {connect} from "mongoose";
 import httpStatus from "http-status-codes";

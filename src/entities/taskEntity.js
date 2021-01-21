@@ -15,4 +15,4 @@ const Task = new Schema({
     }
 });
 
-export default model('Task', Task);
+export default model('tasks', Task);

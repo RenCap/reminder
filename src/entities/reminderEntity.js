@@ -7,4 +7,4 @@ const Reminder = new Schema({
     }
 });
 
-export default model('Reminder', Reminder);
+export default model('reminders', Reminder);

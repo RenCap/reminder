@@ -4,7 +4,7 @@ import * as taskDao from "../daos/taskDao";
 import * as reminderService from "./reminderService";
 
 
-export const find = async () => await taskDao.find();
+export const find = async () => taskDao.find();
 
 export const findById = async id => {
     const task = await taskDao.findById(id);
@@ -16,12 +16,12 @@ export const findById = async id => {
 
 export const findByReminder = async reminderId => {
     let reminder = await reminderService.findById(reminderId);
-    return await taskDao.find({reminder: reminder});
+    return taskDao.find({reminder: reminder});
 };
 
 export const create = async (reminderId, task) => {
     task.reminder = await reminderService.findById(reminderId);
-    return await taskDao.create(task);
+    return taskDao.create(task);
 };
 
 export const update = async (reminderId, taskId, task) => {
