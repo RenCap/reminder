@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  reminder:
+    image: reminder
+    build:
+      context: ./
+    ports:
+      - 8080:3000
+    environment:
+      MONGO_HOST: mongo
+    volumes:
+      - ./src:/usr/app/src/src
+    entrypoint: npm run serve
+  mongo:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+      - mongo_conf:/data/configdb
+volumes:
+  mongo_data:
+  mongo_conf:
