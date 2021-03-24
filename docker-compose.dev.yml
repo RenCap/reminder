@@ -10,6 +10,7 @@ services:
       MONGO_HOST: mongo
     volumes:
       - ./src:/usr/app/src/src
+      - ./test:/usr/app/src/test
     entrypoint: npm run serve
   mongo:
     image: mongo:4.4

@@ -5,7 +5,9 @@
   "scripts": {
     "build": "babel src -d dist",
     "serve": "nodemon",
-    "start": "npm run build && node dist/bin/www.js"
+    "start": "npm run build && node dist/bin/www.js",
+    "aze": "babel test -d dist_test && mocha \"dist_test/**/*.js\"",
+    "test": "mocha --recursive"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -22,6 +24,8 @@
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
     "@babel/plugin-transform-runtime": "^7.12.10",
-    "@babel/preset-env": "^7.12.10"
+    "@babel/preset-env": "^7.12.10",
+    "@babel/register": "^7.12.10",
+    "mocha": "^8.3.2"
   }
 }
